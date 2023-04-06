@@ -1,0 +1,35 @@
+<%- include('./shared/head', {pageTitle: 'Signup'}) %>
+<link rel="stylesheet" href="/css/forms.css">
+</head>
+
+<body>
+    <%- include('./shared/header') %>
+    <main id="signup">
+        <h1>Signup</h1>
+        <form action="/signup" method="POST">
+            <!-- 액션과 메서드 : 어디로 요청을 전송하고, 어떻게 전송하는가 -->
+            <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+            <!-- csrf 토큰을 전송 보안! -->
+            <p>
+                <label for="name">Name</label>
+                <input type="name" name="name" id="name" required>
+            </p>
+            <p>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required>
+            </p>
+            <p>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" minlength="6" required>
+            </p>
+            <p>
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" name="confirmPassword" id="confirmPassword" required>
+            </p>
+            <button type="submit">Signup</button>
+        </form>
+    </main>
+</body>
+
+<% include('./shared/footer') %>
+
