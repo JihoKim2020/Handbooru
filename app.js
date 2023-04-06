@@ -35,21 +35,24 @@ app.use(csrf());
 
 const addCsrfTokenmiddleware = require('./middlewares/csrf-token');
 app.use(addCsrfTokenmiddleware);
-// csrf-token.js를 사용한다. app.use(csurf())를 사용하고 나서 사용해야함
-
-
-const signupRoutes = require('./routes/signup.routes');
-app.use(signupRoutes);
-// signup 라우터를 사용하겠다는 의미.
-
-const loginRoutes = require('./routes/login.routes');
-app.use(loginRoutes);
-// login 라우터를 사용하겠다는 의미.
-
 
 const errorHandlermiddleware = require('./middlewares/error-handler');
 app.use(errorHandlermiddleware);
-// error-handler.js를 사용하겠다는 의미.
+
+const checkAuthStatusmiddleware = require('./middlewares/check-auth');
+app.use(checkAuthStatusmiddleware);
+// 각각의 미들웨어를 사용하겠다는 의미.
+
+
+const mainRoutes = require('./routes/main.routes');
+app.use(mainRoutes);
+
+const signupRoutes = require('./routes/signup.routes');
+app.use(signupRoutes);
+
+const loginRoutes = require('./routes/login.routes');
+app.use(loginRoutes);
+// 각각의 라우터를 사용하겠다는 의미.
 
 
 app.listen(3000);

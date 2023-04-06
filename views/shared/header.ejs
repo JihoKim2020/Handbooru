@@ -1,4 +1,13 @@
 <header>
     <div><a href="/">HandBooru</a></div>
-    <nav></nav>
+    <nav>
+        <ul>
+            <% if (locals.isAuth) { %>
+            <li>
+                <p>User is logged In!</p>
+                <button>Logout</button>
+            </li>
+            <% } %>
+        </ul>
+    </nav>
 </header>

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const usermodel = require('../models/signup.model');
+const signupmodel = require('../models/signup.model');
 
 
 
@@ -9,7 +9,7 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', async (req, res) => {
-    const user = new usermodel(
+    const user = new signupmodel(
         req.body.name,
         req.body.email,
         req.body.password

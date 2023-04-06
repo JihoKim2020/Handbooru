@@ -1,25 +1,13 @@
 const {userDB} = require('../database/MongoDB');
 bcrypt = require('bcrypt');
 
-class usermodel {
+class signupmodel {
     constructor(name, email, password) {
         this.name = name;
         this.email = email;
         this.password = password;
         // 컨테이너에 일단 변수들을 저장
     }
-
-    validateuser() {
-        const loginemail = userDB.findOne({email: this.email})
-        const loginpassword = userDB.findOne({password: this.password})
-
-        if (this.email.trim() === loginemail && this.password.trim() === loginpassword) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 
     async signup() {
         const cryptedpassword = await bcrypt.hash(this.password, 12);
@@ -34,4 +22,4 @@ class usermodel {
         }      
 }
 
-module.exports = usermodel;
+module.exports = signupmodel;
