@@ -52,6 +52,9 @@ app.use(signupRoutes);
 
 const loginRoutes = require('./routes/login.routes');
 app.use(loginRoutes);
+
+const logoutRoutes = require('./routes/logout.routes');
+app.use(logoutRoutes);
 // 각각의 라우터를 사용하겠다는 의미.
 
 

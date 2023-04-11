@@ -5,7 +5,10 @@
             <% if (locals.isAuth) { %>
             <li>
                 <p>User is logged In!</p>
-                <button>Logout</button>
+                <form action="/logout" method="POST"> <!-- 모든 POST에는 csrf 토큰이 필요하다. -->
+                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+                    <button type="submit">Logout</button>
+                </form>
             </li>
             <% } %>
         </ul>
