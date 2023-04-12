@@ -6,6 +6,12 @@
     <%- include('./shared/header') %>
     <main id="login">
         <h1>Login</h1>
+        <% if (inputData.errmessage) {%>
+            <section class="alert">
+                <h2>Login Failed</h2>
+                <p><%= inputData.errmessage %></p>
+            </section>
+        <% } %>
         <form action="/login" method="POST">
             <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
             <p>

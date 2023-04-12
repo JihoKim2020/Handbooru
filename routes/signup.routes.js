@@ -14,6 +14,7 @@ router.get('/signup', (req, res) => {
             email: '',
             password: '',
         }
+        res.render('signup.views.ejs', { inputData: sessionData }); 
     } else { 
         res.render('signup.views.ejs', { inputData: sessionData }); 
     }
