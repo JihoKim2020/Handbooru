@@ -6,17 +6,24 @@
     <%- include('./shared/header') %>
     <main id="signup">
         <h1>Signup</h1>
+        <% if (inputData.errmessage) {%>
+            <section class="alert">
+                <h2>Email already exists</h2>
+                <p><%= inputData.errmessage %></p>
+            </section>
+        <% } %>
+
         <form action="/signup" method="POST">
             <!-- 액션과 메서드 : 어디로 요청을 전송하고, 어떻게 전송하는가 -->
             <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
             <!-- csrf 토큰을 전송 보안! -->
             <p>
                 <label for="name">Name</label>
-                <input type="name" name="name" id="name" required>
+                <input type="name" name="name" id="name" value="<%= inputData.name %>" required>
             </p>
             <p>
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" id="email" value="<%= inputData.email %>" required>
             </p>
             <p>
                 <label for="password">Password</label>
