@@ -60,8 +60,11 @@ router.post('/login', async (req, res) => {
     if (!hasError) {
         function createUserSession (req, user, action) {
             req.session.uid = user._id.toString(); 
+            req.session.isAdmin = user.isAdmin;
             req.session.save(action); 
         } // 유저의 세션을 만들어주는 함수이다. action은 세션을 만들고 뒤에 실행하는 함수
+          // toString을 쓰는 이유는 세션에는 문자열만 저장할 수 있기 때문이다.
+          // uesr.isAdmin은 유저의 isAdmin이 true인지 false인지를 확인한다. 그리고 이것을 세션에 저장한다.
 
         createUserSession(req, existinguser, function(err){
             if (err) {

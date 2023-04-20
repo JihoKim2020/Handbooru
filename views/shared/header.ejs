@@ -1,16 +1,37 @@
-<header>
-    <div><a href="/">HandBooru</a></div>
-    <nav>
-        <ul>
-            <% if (locals.isAuth) { %>
+<header class="header" role="banner" ref="header">
+    <h1 class="header_logo"><a class="header_logo" href="/" rel="home"><img src="/images/icons8-항목의-손-60.png"></a></h1>
+    <ul class="menu_list">
+        <li><a href="/">FIND IMAGES</a></li>
+        <li><a href="/">GET TOKENS</a></li>
+
+        <li><a href="/">DATABASE</a></li>
+        <li><a href="/">ABOUT</a></li>
+    </ul>
+    <ul class="auth_list">
+        <% if (!locals.isAuth) { %>
             <li>
-                <p>User is logged In!</p>
-                <form action="/logout" method="POST"> <!-- 모든 POST에는 csrf 토큰이 필요하다. -->
-                    <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
-                    <button type="submit">Logout</button>
-                </form>
+                <p><a href='/login'>LOGIN</a></p>
+            </li>
+            <li>
+                <p><a href='/signup'>SIGNUP</a></p>
             </li>
             <% } %>
-        </ul>
-    </nav>
+
+        <% if (locals.isAdmin) { %>
+            <li><p><a href="/admin">ADMIN</a></p></li>
+            <li><p><a href="/database">MANAGE DB</a></p></li>
+            <% } %>
+
+
+        <% if (locals.isAuth) { %>
+            <li><p><a href="/upload">UPLOAD IMAGES</a></p></li>
+            <li><p><a href='/profile'>PROFILE</a></p></li>
+            <li><p>                
+                <form action="/logout" method="POST"> <!-- 모든 POST에는 csrf 토큰이 필요하다. -->
+                <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">
+                <button type="submit">LOGOUT</button>
+            </form></p>
+            </li>
+            <% } %>
+    </ul>
 </header>

@@ -21,6 +21,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); 
 // 뷰 엔진으로 ejs를 쓰며 뷰 폴더를 /views로 지정한다.
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 const expressSession = require('express-session');
 const createSessionConfig = require('./config/session');
@@ -55,6 +57,9 @@ app.use(loginRoutes);
 
 const logoutRoutes = require('./routes/logout.routes');
 app.use(logoutRoutes);
+
+const uploadimgRoutes = require('./routes/uploadimg.routes');
+app.use(uploadimgRoutes);
 // 각각의 라우터를 사용하겠다는 의미.
 
 

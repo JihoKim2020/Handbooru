@@ -1,0 +1,29 @@
+<%- include('./shared/head', {pageTitle: 'Login'}) %>
+<link rel="stylesheet" href="/css/forms.css">
+</head>
+
+<body>
+    <%- include('./shared/header') %>
+    <main>
+        <H1> Find image to Upload </H1>
+        <div class="upload">
+            <form action="/uploadimg?_csrf=<%= locals.csrfToken %>" method="POST" enctype="multipart/form-data">
+                <input type="file" name="image" id="image" accept="image/png,image/jpg,image/jpeg">
+                <p>
+                    <label for="imgdiscription">Image discription</label>
+                    <textarea name="imgdiscription" rows="3" id="imgdiscription"></textarea>
+                </p>
+                <p>
+                    <label for="model">Model</label>
+                    <input type="text" name="model" id="model">
+                </p>
+                <p>
+                    <label for="extranetwork">LORA / Embeddings</label>
+                    <input type="text" name="extranetwork" id="extranetwork">
+                </p>
+                <input type="submit" value="Upload Image" name="submit">
+            </form>
+    </main>
+</body>
+
+<% include('./shared/footer') %>
