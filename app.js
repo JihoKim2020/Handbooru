@@ -7,7 +7,7 @@ const path = require('path');
 // path는 node.js에서 기본적으로 제공하는 모듈이다. path는 파일의 경로를 다루는 모듈이다.
 
 
-const {client, userDB, connectDB}= require('./database/MongoDB');
+const {client, userDB, imgDB, connectDB}= require('./database/MongoDB');
 connectDB();
 // MongoDB에 연결한다.
 

@@ -7,8 +7,7 @@
     <main>
         <H1> Find image to Upload </H1>
         <div class="upload">
-            <form action="/uploadimg?_csrf=<%= locals.csrfToken %>" method="POST" enctype="multipart/form-data">
-                <input type="file" name="image" id="image" accept="image/png,image/jpg,image/jpeg">
+            <form action="/upload?_csrf=<%= locals.csrfToken %>" method="POST" enctype="multipart/form-data">
                 <p>
                     <label for="imgdiscription">Image discription</label>
                     <textarea name="imgdiscription" rows="3" id="imgdiscription"></textarea>
@@ -21,7 +20,13 @@
                     <label for="extranetwork">LORA / Embeddings</label>
                     <input type="text" name="extranetwork" id="extranetwork">
                 </p>
-                <input type="submit" value="Upload Image" name="submit">
+                <p>
+                    <label for="image">Upload Image</label>
+                    <input type="file" id="image" name="image" accept="image/png,image/jpg,image/jpeg" required />
+                </p>
+                <div>
+                    <input type="submit" value="Upload Image" name="submit">
+                </div>
             </form>
     </main>
 </body>

@@ -4,7 +4,7 @@ const { MongoClient } = require('mongodb');
 const uri = process.env.DATABASE_URI;
 const client = new MongoClient(uri, {useNewUrlParser:true});
 const userDB = client.db("HandBooru").collection("users")
-
+const imgDB = client.db("HandBooru").collection("images")
 
 async function connectDB() {
     try {
@@ -15,4 +15,4 @@ async function connectDB() {
     }
 }
 
-module.exports = {client, userDB, connectDB};
+module.exports = {client, userDB, imgDB, connectDB};
