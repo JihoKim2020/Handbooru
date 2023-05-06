@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const { userDB } = require('../database/MongoDB');
-const signupmodel = require('../models/signup.model');
+const User = require('../models/user.model')
 const sessionFlash = require('../utils/session-flash');
+bcrypt = require('bcrypt');
 
 
 router.get('/signup', (req, res) => {
@@ -21,15 +21,20 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', async (req, res) => {
-    const user = new signupmodel(
-        req.body.name,
-        req.body.email,
-        req.body.password
-    );
+    const {name, email, password} = req.body;
+    //Form data를 불러온다
+
+    const cryptedpassword = await bcrypt.hash(password, 12);
+    //패스워드 암호화
+
+    const user = new User({
+        name: name, 
+        email: email, 
+        password: cryptedpassword})
 
     async function checkEmailExists(email) {
-        const user = await userDB.findOne({ email: email })
-        if (user) {
+        const isValiduser = await User.findOne({ email: email })
+        if (isValiduser) {
             return false;
         } else {
             return true;
@@ -54,7 +59,8 @@ router.post('/signup', async (req, res) => {
         // 이메일 중복(false)이면 리다이렉트
     } else {
         try {
-            await user.signup();
+            await user.save();
+            console.log('User data added to database')
         } catch (err) {
             console.log(err);
             next(err);

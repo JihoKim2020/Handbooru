@@ -1,13 +1,16 @@
-<%- include('./shared/head', {pageTitle: 'Mainpage' }) %>
+<%- include('./shared/head', {pageTitle: 'Mypage' }) %>
     <link rel="stylesheet" href="/css/forms.css">
     </head>
 
     <body>
         <%- include('./shared/header') %>
             <main>
-                <h1>Uploaded Images</h1>
+                <h1>My Images</h1>
+                <% if (images.length === 0) { %>
+                    <p>You have no images uploded!</p>
+                    <% } else {  %>
                 <div>
-                    <% images.forEach((image) => { %>
+                    <% images.forEach((image)=> { %>
                         <div>
                             <div>
                                 <img
@@ -26,8 +29,8 @@
                             </div>
                         </div>
                         <% }) %>
+                        <% } %>
                 </div>
             </main>
     </body>
-
     <% include('./shared/footer') %>

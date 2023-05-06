@@ -23,27 +23,26 @@ router.get ('/upload', (req, res) => {
     res.render('uploadimg.views.ejs');
 });
 
-router.post('/upload', upload.single("image"),(req, res) => {
+router.post('/upload', upload.single('image'), (req, res) => {
     const obj = {
         imgdiscription: req.body.imgdiscription, 
         model: req.body.model, 
         extranetwork: req.body.extranetwork,
         img: {
-            data: fs.readFileSync(path.join(__dirname, '..' , '/uploads/', req.file.filename)),
-			contentType: 'image/png'
-        }
+            data: fs.readFileSync(path.join(__dirname, '..', 'uploads', req.file.filename)),
+            contentType: 'image/png'
+        },
+        uploadedBy: req.session.uid
     }
 
     imageSchema.create(obj)
-    .then ((err, item) => {
-        if (err) {
-			console.log(err);
-		}
-		else {
-			// item.save();
-			res.redirect('/');
-		}
-    });
+        .then(() => {
+            console.log('Image upload successful');
+            res.redirect('/');
+        })
+        .catch((err) => {
+            console.log('Image upload failed');
+        });
 });
 
 module.exports = router;

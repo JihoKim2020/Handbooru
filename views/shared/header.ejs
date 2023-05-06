@@ -25,7 +25,7 @@
 
         <% if (locals.isAuth) { %>
             <li><p><a href="/upload">UPLOAD IMAGES</a></p></li>
-            <li><p><a href='/profile'>PROFILE</a></p></li>
+            <li><p><a href='/mypage'>MYPAGE</a></p></li>
             <li><p>                
                 <form action="/logout" method="POST"> <!-- 모든 POST에는 csrf 토큰이 필요하다. -->
                 <input type="hidden" name="_csrf" value="<%= locals.csrfToken %>">

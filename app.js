@@ -7,7 +7,7 @@ const path = require('path');
 // path는 node.js에서 기본적으로 제공하는 모듈이다. path는 파일의 경로를 다루는 모듈이다.
 
 
-const {client, userDB, imgDB, connectDB}= require('./database/MongoDB');
+const {connectDB}= require('./database/MongoDB');
 connectDB();
 // MongoDB에 연결한다.
 
@@ -17,8 +17,8 @@ app.use(express.json());
 // HTML의 form 태그를 사용할 때, body-parser를 사용하지 않아도 req.body를 사용할 수 있으며, JSON 형식의 데이터를 받을 수 있다.
 
 
-app.set('view engine', 'ejs'); 
 app.set('views', path.join(__dirname, 'views')); 
+app.set('view engine', 'ejs'); 
 // 뷰 엔진으로 ejs를 쓰며 뷰 폴더를 /views로 지정한다.
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -60,6 +60,9 @@ app.use(logoutRoutes);
 
 const uploadimgRoutes = require('./routes/uploadimg.routes');
 app.use(uploadimgRoutes);
+
+const mypageRoutes = require('./routes/mypage.routes');
+app.use(mypageRoutes);
 // 각각의 라우터를 사용하겠다는 의미.
 
 
